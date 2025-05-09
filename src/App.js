@@ -1,23 +1,19 @@
-import logo from './logo.svg';
+import React from 'react';
+import Lista from './Lista.js';
+import { useState } from 'react';
 import './App.css';
+import TaskList from './Listatareas.js';
 
 function App() {
+  const [lista, setLista] = useState([]); // (B-1)
+  const manejarSumarItem = addItem => {
+    setLista([...lista, addItem]); // (B-2)
+  };
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Lista manejarSumarItem={manejarSumarItem}/>
+    <TaskList lista={lista} setLista={setLista} />
     </div>
   );
 }
